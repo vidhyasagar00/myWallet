@@ -28,7 +28,7 @@ platform :android do
            apk_path: apk_path,
            release_notes: "#{release_note}",
            groups_file: "fastlane/groups.txt",
-           service_credentials_file: ENV["FIREBASE_LOGIN_CREDENTIALS"]
+           service_credentials_file: ENV["FIREBASE_CREDENTIALS"]
      )
      # fastlane testGoogle r:"First Alpha Release"
   end
