@@ -21,10 +21,8 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Create Firebase Service Credentials file
-        run: |
-          echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json
         env:
-          FIREBASE_CREDENTIALS: ${{ FIREBASE_CREDENTIALS }}
+          FIREBASE_CREDENTIALS: firebase_credentials.json
 
       - name: Distribute app with 🔥 App Distribution 🚀
         run: bundle exec fastlane distribute
