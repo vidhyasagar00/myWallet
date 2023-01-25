@@ -16,18 +16,18 @@ jobs:
         with:
           ruby-version: '3.2.0'
 
-- name: Install Bundle
-  run: |
-    bundle config path vendor/bundle
-    bundle install --jobs 4 --retry 3
+      - name: Install Bundle
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
 
-- name: Create Firebase Service Credentials file
-  run: |
-    echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json
-  env:
-    FIREBASE_CREDENTIALS: ${{ FIREBASE_CREDENTIALS }}
+      - name: Create Firebase Service Credentials file
+        run: |
+          echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json
+        env:
+          FIREBASE_CREDENTIALS: ${{ FIREBASE_CREDENTIALS }}
 
-- name: Distribute app with 🔥 App Distribution 🚀
-    run: bundle exec fastlane distribute
-    env:
-      FIREBASE_APP_ID: ${{ FIREBASE_APP_ID }}
+      - name: Distribute app with 🔥 App Distribution 🚀
+          run: bundle exec fastlane distribute
+          env:
+            FIREBASE_APP_ID: ${{ FIREBASE_APP_ID }}
