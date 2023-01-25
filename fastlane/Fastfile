@@ -14,7 +14,7 @@ platform :android do
      gradle(task: "assemble", flavor: "Google", build_type: "Debug")
 
       # find apk path
-     output_path = "./app/build/outputs/apk/google/debug/"
+     output_path = "./app/build/outputs/apk/release/"
      output_json_path = output_path + "output-metadata.json"
      build_output = load_json(json_path: output_json_path)
      elements = build_output["elements"][0]
