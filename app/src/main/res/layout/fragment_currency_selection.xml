@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white2"
+        tools:context=".ui.currencySelection.CurrencySelectionFragment">
+
+        <TextView
+            android:id="@+id/lblWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Welcome"
+            android:textColor="@color/darkPrimary"
+            android:textSize="25sp"
+            android:textStyle="italic|bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/currencyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toTopOf="@id/lblInfo"
+            app:layout_constraintTop_toBottomOf="@id/lblWelcome">
+
+
+            <TextView
+                android:id="@+id/lblChooseCurrencyType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Choose your currency sign"
+                android:textColor="@color/darkSecondary"
+                android:textSize="20sp"
+                android:textStyle="italic|bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewChooseCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/lightGray"
+                app:layout_constraintTop_toBottomOf="@id/lblChooseCurrencyType" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/currencySelector"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewChooseCurrency" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imgInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/info"
+            app:layout_constraintBottom_toBottomOf="@id/lblInfo"
+            app:layout_constraintEnd_toStartOf="@id/lblInfo"
+            app:layout_constraintStart_toStartOf="@id/currencyContainer"
+            app:layout_constraintTop_toTopOf="@id/lblInfo"
+            app:tint="@color/darkSecondary" />
+
+        <TextView
+            android:id="@+id/lblInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="You can also change your currency sign later."
+            android:textSize="18sp"
+            android:textColor="@color/darkGray"
+            app:layout_constraintBottom_toTopOf="@id/btnNext"
+            app:layout_constraintEnd_toEndOf="@id/currencyContainer"
+            app:layout_constraintStart_toEndOf="@id/imgInfo"
+            app:layout_constraintTop_toBottomOf="@id/currencyContainer" />
+
+        <TextView
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:drawableEnd="@drawable/arrow_right"
+            android:drawableTint="@color/darkSecondary"
+            android:textColor="@color/darkSecondary"
+            android:text="Next"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

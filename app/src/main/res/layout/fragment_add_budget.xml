@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.myWallet.ui.addBudget.AddBudgetViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.addBudget.AddBudgetFragment">
+
+        <TextView
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.onCancelClick()}"
+            android:text=" CANCEL"
+            android:textColor="@color/darkPrimary"
+            android:textSize="15sp"
+            app:drawableStartCompat="@drawable/close"
+            app:drawableTint="@color/darkPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.onSaveClick()}"
+            android:text="Save "
+            android:textColor="@color/darkPrimary"
+            android:textSize="15sp"
+            app:drawableEndCompat="@drawable/done"
+            app:drawableTint="@color/darkPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/btnClose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnClose" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/categoryLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@id/transferToLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnClose">
+
+            <TextView
+                android:id="@+id/itmIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:onClick="@{() -> viewModel.onIncomeClick()}"
+                android:paddingHorizontal="15dp"
+                android:text="Income"
+                android:textAllCaps="true"
+                android:textColor="@color/midGray"
+                app:layout_constraintBottom_toBottomOf="@id/itmExpense"
+                app:layout_constraintEnd_toStartOf="@id/viewLeft"
+                app:layout_constraintTop_toTopOf="@id/itmExpense" />
+
+            <View
+                android:id="@+id/viewLeft"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@id/itmExpense"
+                app:layout_constraintEnd_toStartOf="@id/itmExpense"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/itmExpense" />
+
+            <TextView
+                android:id="@+id/itmExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:onClick="@{() -> viewModel.onExpenseClick()}"
+                android:paddingHorizontal="15dp"
+                android:text="expense"
+                android:textAllCaps="true"
+                android:textColor="@color/midGray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewRight"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@id/itmExpense"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/itmExpense"
+                app:layout_constraintTop_toTopOf="@id/itmExpense" />
+
+            <TextView
+                android:id="@+id/itmTransfer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:onClick="@{() -> viewModel.onTransferClick()}"
+                android:paddingHorizontal="15dp"
+                android:text="transfer"
+                android:textAllCaps="true"
+                android:textColor="@color/midGray"
+                app:layout_constraintBottom_toBottomOf="@id/itmExpense"
+                app:layout_constraintStart_toEndOf="@id/viewRight"
+                app:layout_constraintTop_toTopOf="@id/itmExpense" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/transferToLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoryLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnSelectionLeft"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape_stroke_round_rect"
+                android:onClick="@{() -> viewModel.onSelectLeft()}"
+                android:paddingVertical="5dp"
+                app:layout_constraintEnd_toStartOf="@id/btnSelectionRight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgTypeLeft"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        setImageUri="@{viewModel.account.icon}"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/midGray" />
+
+                    <TextView
+                        android:id="@+id/txtTypeLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:paddingHorizontal="5dp"
+                        android:text="@{viewModel.account.title}"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnSelectionRight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape_stroke_round_rect"
+                android:onClick="@{() -> viewModel.onSelectRight()}"
+                android:paddingVertical="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnSelectionLeft"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imgTypeRight"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginVertical="5dp"
+                        android:background="@drawable/wallet_1"
+                        android:backgroundTint="@color/midGray" />
+
+                    <TextView
+                        android:id="@+id/txtTypeRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:paddingHorizontal="5dp"
+                        android:text="Account"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/txtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/shape_stroke_round_rect"
+            android:gravity="top"
+            android:hint="Add description"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/middleView"
+            app:layout_constraintTop_toBottomOf="@id/transferToLayout" />
+
+        <View
+            android:id="@+id/middleView"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/shape_stroke_round_rect"
+            app:layout_constraintBottom_toBottomOf="@id/viewBelowAmount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/middleView">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:gravity="end|center_vertical"
+                android:text="@{viewModel.amount}"
+                android:textSize="18sp"
+                android:typeface="sans"
+                app:layout_constraintEnd_toStartOf="@id/btnBackSpace"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtCalSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.symbol}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnBackSpace"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/backspace"
+                android:onClick="@{() -> viewModel.modifyAmount(' ')}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/viewBelowAmount"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".63" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/viewBelowAmount">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect_2"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('+')}"
+                    android:text="+"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('1')}"
+                    android:text="1"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('2')}"
+                    android:text="2"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('3')}"
+                    android:text="3"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect_2"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('-')}"
+                    android:text="-"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('4')}"
+                    android:text="4"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('5')}"
+                    android:text="5"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('6')}"
+                    android:text="6"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect_2"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('*')}"
+                    android:text="x"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('7')}"
+                    android:text="7"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('8')}"
+                    android:text="8"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('9')}"
+                    android:text="9"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect_2"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('/')}"
+                    android:text="/"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect_2"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('.')}"
+                    android:text="."
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('0')}"
+                    android:text="0"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_stroke_round_rect_2"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.modifyAmount('=')}"
+                    android:text="="
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
